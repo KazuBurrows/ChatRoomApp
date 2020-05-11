@@ -13,18 +13,27 @@ namespace ChatRoomLogin.Controllers
             return View();
         }
 
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
 
-            return View();
+        [HttpPost]
+        public ActionResult Login(String param_email, String param_pass)
+        {
+
+            // Here I need a server to call to validate login
+
+            /*if validLogin(param_email, param_pass) {
+
+                return RedirectToAction("Index", "Home");
+            }*/
+
+            String returnedMsg;
+
+            returnedMsg = AsynchronousClient.StartClient();
+            
+
+
+            return Content(returnedMsg);
         }
 
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
 
-            return View();
-        }
     }
 }
