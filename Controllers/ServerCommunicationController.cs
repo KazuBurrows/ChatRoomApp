@@ -85,6 +85,7 @@ namespace ChatRoomLogin.Controllers
                 client.Shutdown(SocketShutdown.Both);
                 client.Close();
 
+
             }
             catch (Exception e)
             {
