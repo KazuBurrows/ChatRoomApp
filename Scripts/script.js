@@ -23,11 +23,11 @@ function loginSubmit()
 
     $.ajax({
         type: "POST",
-        url: "/Home/Login",
-        data: { param_email: email, param_pass: password },
-        success: function (a)
+        url: "/Login/Login",
+        data: { param_email: email, param_password: password },
+        success: function (response)
         {
-            alert(a);
+            alert(response);
         }
 
     });

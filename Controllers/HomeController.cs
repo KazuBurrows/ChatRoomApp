@@ -14,25 +14,25 @@ namespace ChatRoomLogin.Controllers
         }
 
 
-        [HttpPost]
-        public ActionResult Login(String param_email, String param_pass)
+        /*[HttpPost]
+        public ActionResult Login(string param_email, string param_pass)
         {
 
             // Here I need a server to call to validate login
 
-            /*if validLogin(param_email, param_pass) {
+            *//*if validLogin(param_email, param_pass) {
 
                 return RedirectToAction("Index", "Home");
-            }*/
+            }*//*
 
-            String returnedMsg;
+            string returnedMsg;
 
             returnedMsg = AsynchronousClient.StartClient();
             
 
 
             return Content(returnedMsg);
-        }
+        }*/
 
 
     }

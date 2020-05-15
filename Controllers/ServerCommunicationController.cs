@@ -49,9 +49,9 @@ namespace ChatRoomLogin.Controllers
         private static ManualResetEvent receiveDone = new ManualResetEvent(false);
 
         // The response from the remote device.  
-        private static String response = String.Empty;
+        private static string response = String.Empty;
 
-        public static String StartClient()
+        public static string StartClient(string query)
         {
             // Connect to a remote device.  
             try
@@ -71,7 +71,7 @@ namespace ChatRoomLogin.Controllers
                 connectDone.WaitOne();
 
                 // Send test data to the remote device.  
-                Send(client, "This is a test<EOF>");                                        // HERE IS WHERE I SEND
+                Send(client, query + "<EOF>");                                        // HERE IS WHERE I SEND
                 sendDone.WaitOne();
 
                 // Receive the response from the remote device.  
@@ -177,7 +177,7 @@ namespace ChatRoomLogin.Controllers
             }
         }
 
-        private static void Send(Socket client, String data)
+        private static void Send(Socket client, string data)
         {
             // Convert the string data to byte data using ASCII encoding.  
             byte[] byteData = Encoding.ASCII.GetBytes(data);
