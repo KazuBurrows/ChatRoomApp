@@ -28,7 +28,27 @@ namespace ChatRoomLogin.Models
 
         }
 
-        
+
+
+        public string getObjectType()
+        {
+            return objectType;
+        }
+
+
+
+        public string getQueryType()
+        {
+            return queryType;
+        }
+
+
+
+        public string getData()
+        {
+            return data;
+        }
+
 
     }
 }

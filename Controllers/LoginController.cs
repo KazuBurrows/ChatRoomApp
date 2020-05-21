@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ChatRoomLogin.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -29,16 +30,17 @@ namespace ChatRoomLogin.Controllers
                 return RedirectToAction("Index", "Home");
             }*/
 
-            string queryObject = "Login";
+            string queryObject = "login";
             string queryType = "validate";
-            string queryData = " 'email': {0}, 'password': {1} ";
+            string queryData = " 'email': '{0}', 'password': '{1}' ";
             string data = "{" + String.Format(queryData, param_email, param_password) + "}";
 
             Models.Query query = new Models.Query(queryObject, queryType, data);
+            string encoded_object = JsonConverter.jsonEncode(query);
 
 
             string responseMsg;
-            responseMsg = AsynchronousClient.StartClient(data);
+            responseMsg = AsynchronousClient.StartClient(encoded_object);
 
 
 
