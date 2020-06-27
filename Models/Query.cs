@@ -9,46 +9,8 @@ namespace ChatRoomLogin.Models
 
     public class Query
     {
-
-        private string objectType;
-        private string queryType;
-        private string data;
-
-
-        /*
-         * 
-         * 
-         * param query_data
-         */
-        public Query(string query_object, string query_type, string query_data)
-        {
-            objectType = query_object;
-            queryType = query_type;
-            data = query_data;
-
-        }
-
-
-
-        public string getObjectType()
-        {
-            return objectType;
-        }
-
-
-
-        public string getQueryType()
-        {
-            return queryType;
-        }
-
-
-
-        public string getData()
-        {
-            return data;
-        }
-
+        public string QueryType { get; set; }
+        public string Data { get; set; }
 
     }
 }

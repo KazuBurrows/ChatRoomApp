@@ -1,17 +1,15 @@
 ﻿using ChatRoomLogin.Models;
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-
 namespace ChatRoomLogin.Controllers
 {
-    public class LoginController : Controller
+    public class RegisterController : Controller
     {
-        // GET: Login
+        // GET: Register
         public ActionResult Index()
         {
             return View();
@@ -19,9 +17,8 @@ namespace ChatRoomLogin.Controllers
 
 
 
-
         [HttpPost]
-        public ActionResult Login(string param_email, string param_password)
+        public ActionResult Register(string param_email, string param_password)
         {
 
             // Here I need a server to call to validate login
@@ -32,11 +29,12 @@ namespace ChatRoomLogin.Controllers
             }*/
 
 
-            string json_query = QueryFactory.LoginQuery(param_email, param_password);
+            string json_query = QueryFactory.RegisterQuery(param_email, param_password);
 
             string responseMsg = AsynchronousClient.StartClient(json_query);
             //return Content(responseMsg);
             return Content(json_query);
         }
+
     }
 }

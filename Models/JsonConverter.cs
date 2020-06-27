@@ -1,4 +1,6 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using Microsoft.Ajax.Utilities;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,87 +8,46 @@ using System.Web;
 
 namespace ChatRoomLogin.Models
 {
-    public class JsonConverter
+    /*
+    * Return json string of object
+    */
+    public static class JsonConverter
     {
 
-
-        public JsonConverter()
+        public static string encodeQuery(string queryType, string data)
         {
-
-        }
-
-
-        public static string jsonEncode(Query query_object)
-        {
-            string encoded_object;
-            string obj_type = query_object.getObjectType();
-
-            switch (obj_type)
+            Query query = new Query
             {
-                case "login":
-                    encoded_object = encodeLogin(query_object);
+                QueryType = queryType,
+                Data = data,
+            };
 
-                    return encoded_object;
-
-            }
-
-            return null;
+            return JsonConvert.SerializeObject(query, Formatting.Indented);
         }
 
 
-
-        //https://stackoverflow.com/questions/2246694/how-to-convert-json-object-to-custom-c-sharp-object
-        public static Query jsonDecode(string encoded_object)
+        public static string encodeLogin(string email, string password)
         {
-            Query decoded_object;
+            Login login = new Login
+            {
+                Email = email,
+                Password = password,
+            };
 
-            string jsonData = @"{  
-            'FirstName':'Jignesh',  
-            'LastName':'Trivedi'  
-            }";
-
-            var details = JObject.Parse(jsonData);
-            Console.WriteLine(string.Concat("Hi ", details["FirstName"], " " + details["LastName"]));
-
-            /*JToken j_query = jObject["query"];
-            string email = (string)j_query["email"];
-            string password = (string)j_query["password"];
-            data = (string)j_query["data"];*/
-
-
-
-
-
-            return null;
+            return JsonConvert.SerializeObject(login, Formatting.Indented);
         }
 
 
-
-
-
-        private static string encodeLogin(Query query_object)
+        public static string encodeRegister(string email, string password)
         {
-            string json_qeury = "";
-            string json_format;
+            Register register = new Register
+            {
+                Email = email,
+                Password = password,
+            };
 
-            json_format = " 'objectType': '{0}',";
-            json_qeury += String.Format(json_format, query_object.getObjectType());
-
-            json_format = " 'queryType': '{0}',";
-            json_qeury += String.Format(json_format, query_object.getQueryType());
-
-
-            json_format = " 'data': [{0}] ";
-            json_qeury += String.Format(json_format, query_object.getData());
-
-            json_qeury = @"{" + json_qeury + "}";
-
-            return json_qeury;
-
+            return JsonConvert.SerializeObject(register, Formatting.Indented);
         }
-
-
-
 
 
 
