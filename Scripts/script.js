@@ -27,6 +27,7 @@ function loginSubmit()
         data: { param_email: email, param_password: password },
         success: function (response)
         {
+            console.log(response);
             alert(response);
         }
 

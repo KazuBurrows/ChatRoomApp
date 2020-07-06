@@ -36,7 +36,14 @@ namespace ChatRoomLogin.Controllers
 
             string responseMsg = AsynchronousClient.StartClient(json_query);
             //return Content(responseMsg);
-            return Content(json_query);
+
+
+            /*if () {
+                return Redirect("http://www.google.com");
+            }*/
+
+
+            return Content(responseMsg);
         }
     }
 }
