@@ -14,11 +14,55 @@ namespace ChatRoomLogin.Models
     public static class JsonConverter
     {
 
-        public static string encodeQuery(string queryType, string data)
+        public static Query createQuery(string payload_type, string[] payload)
         {
+            Random r = new Random();            //Need like an atomic variable to make this work. Having a random id is risky
+            int queryID = r.Next(64000);
+
             Query query = new Query
             {
+                QueryID = queryID,
+                PayloadType = payload_type,
+                Payload = payload
+            };
+
+            return query;
+        }
+
+
+        public static string encodeQuery(Query query)
+        {
+            /*Random r = new Random();            //Need like an atomic variable to make this work. Having a random id is risky
+            int queryID = r.Next(64000);
+
+            Query query = new Query
+            {
+                QueryID = queryID,
+                PayloadType = payload_type,
+                Payload = payload
+            };*/
+            return JsonConvert.SerializeObject(query, Formatting.Indented);
+        }
+
+
+        public static Query decodeQuery(string json_query)
+        {
+            return JsonConvert.DeserializeObject<Query>(json_query);
+        }
+
+
+
+
+        /*public static string encodeQuery(string queryType, string queryObject, string data)
+        {
+            Random r = new Random();
+            int queryID = r.Next(64000);
+
+            Query query = new Query
+            {
+                QueryID = queryID,
                 QueryType = queryType,
+                QueryObject = queryObject,
                 Data = data,
             };
 
@@ -48,6 +92,15 @@ namespace ChatRoomLogin.Models
 
             return JsonConvert.SerializeObject(register, Formatting.Indented);
         }
+
+
+        *//*
+         * Decode json Query object
+         *//*
+        public static Query decodeQuery(string json_query)
+        {
+            return JsonConvert.DeserializeObject<Query>(json_query);
+        }*/
 
 
 

@@ -32,11 +32,14 @@ namespace ChatRoomLogin.Controllers
             }*/
 
 
-            string json_query = QueryFactory.LoginQuery(param_email, param_password);
+            CommandHandler command_handler = new CommandHandler();
+            Query server_response = command_handler.Login(param_email, param_password);
 
-            string responseMsg = AsynchronousClient.StartClient(json_query);
-            //return Content(responseMsg);
-            return Content(json_query);
+
+
+            return Content(server_response.Payload[0]);
+            //return Content("Server returned: " + server_response.QueryID + ", " + server_response.PayloadType + ", " + server_response.Payload[0]);
+
         }
     }
 }

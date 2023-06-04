@@ -29,11 +29,16 @@ namespace ChatRoomLogin.Controllers
             }*/
 
 
-            string json_query = QueryFactory.RegisterQuery(param_email, param_password);
+            CommandHandler command_handler = new CommandHandler();
+            command_handler.Register(param_email, param_password);
+
+            return Content("no response message yet.");
+
+            /*string json_query = QueryFactory.RegisterQuery(param_email, param_password);
 
             string responseMsg = AsynchronousClient.StartClient(json_query);
             //return Content(responseMsg);
-            return Content(json_query);
+            return Content(json_query);*/
         }
 
     }

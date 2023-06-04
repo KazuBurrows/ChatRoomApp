@@ -5,9 +5,8 @@ using System.Web;
 
 namespace ChatRoomLogin.Models
 {
-    public class Login
+    interface Command
     {
-        public string Email { get; set; }
-        public string Password { get; set; }
+        Query Execute();
     }
 }
